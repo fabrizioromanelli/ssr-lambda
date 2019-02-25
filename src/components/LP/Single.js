@@ -13,7 +13,7 @@ class LPSingle extends Component {
 
 		// Set 'lp' if it’s on server-side
 		if (this.props.staticContext) {
-			 lp = this.props.staticContext.books.find(lp => lp.slug === slug)
+			 lp = this.props.staticContext.lps.find(lp => lp.slug === slug)
 		}
 
 		this.state = { lp: lp, slug: slug }

@@ -2,7 +2,7 @@
 
 *Published February 22, 2019*
 
-This App implements the server-side rendering App using React Router, express and the lamba for AWS.
+This App implements the server-side rendering App using React Router, express and the lamba for AWS. Thanks [Zac Fukuda](https://www.mokuji.me/article/universal-app-react-router) for the inputs! :)
 
 ## Features
 1. **Centralized Routes**
@@ -16,10 +16,10 @@ This App implements the server-side rendering App using React Router, express an
 ## Pages
 The application has the following pages.
 - Home [/]
-- Book [/book]
-	- List of Books [/book]
-	- Book Detail [/book/:slug]
-- Movie (Redirect to Book) [/movie]
+- LPs [/lps]
+	- List of LPs [/lps]
+	- LP Detail [/lps/:slug]
+- EPs (Redirect to LPs) [/eps]
 - 404 [/foo]
 
 ## Scripts
