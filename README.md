@@ -8,6 +8,7 @@ This App implements the server-side rendering App using React Router, express an
 1. **Centralized Routes**
 
 	With the support of [React Router Config](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config), all routes are managed in `src/routes.js`, and the rendering code was optimized. This also enables us to render data components on the server.
+
 2. **Server-side Rendering with Fetch Data**
 
 	Rather than the data are pre-defined as a variable inside Javascript file, the app fetches data which is saved as in JSON file and renders data component on both front and server side.
@@ -95,3 +96,11 @@ Run the two command above in parallel:
 $ yarn server-dev:watch
 ```
 
+## TODOs
+1. **Rendering twice**
+
+	The App is made to use the same code for both client and server side. However this can cause strange behaviors like the following: the app renders the component on the server-side, and after the HTML delivered to the client, the app will re-render the components that have been already rendered. This also means that the app will fetch the data twice, one on the server and another on the browser. This has to be fixed.
+
+2. **Fetching the same data multiple times**
+
+	Every time the user navigates from a page where some data is fetched, and then back to that page again, the app will try to fetch the data again and again. This also has to be fixed.
