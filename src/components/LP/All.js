@@ -25,7 +25,7 @@ class LPAll extends Component {
 	render() {
 		let lps = this.state.lps.map(lp => (
 			<li key={lp.id}>
-				<Link to={`/lp/${lp.slug}`}><b>{lp.title}</b></Link> by <em>{lp.author}</em>
+				<Link to={`/lps/${lp.slug}`}><b>{lp.title}</b></Link> by <em>{lp.band}</em>, released on <em>{lp.year}</em>.
 			</li>
 		))
 		return (

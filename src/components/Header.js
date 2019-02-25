@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Header = () => (
 	<header>
-		<h1>Universal React App</h1>
+		<h1>Server-side Lambda</h1>
 		<nav>
 			<ul>
 				<li><Link to='/'>Home</Link></li>

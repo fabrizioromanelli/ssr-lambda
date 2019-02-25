@@ -11,7 +11,7 @@ class LPSingle extends Component {
 		let lp = {}
 		let slug = this.props.match.params.slug
 
-		// Set 'book' if it’s on server-side
+		// Set 'lp' if it’s on server-side
 		if (this.props.staticContext) {
 			 lp = this.props.staticContext.books.find(lp => lp.slug === slug)
 		}
@@ -34,8 +34,9 @@ class LPSingle extends Component {
 		return (
 			<div>
 				<h3>{lp.title}</h3>
-				<h5 style={{textAlign: 'right'}}><em>{lp.author}</em></h5>
+				<h5 style={{textAlign: 'right'}}><em>{lp.band}</em></h5>
 				<p>{lp.description}</p>
+				<p><em>Released on {lp.year}</em></p>
 				<br/>
 				<p><Link to='/lps'>Back to all LPs</Link></p>
 			</div>
