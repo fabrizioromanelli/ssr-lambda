@@ -5,6 +5,8 @@ import fetch from 'isomorphic-fetch'
 
 polyfill()
 
+require('dotenv').config()
+
 class LPSingle extends Component {
 	constructor (props) {
 		super(props)
@@ -21,7 +23,15 @@ class LPSingle extends Component {
 
 	componentDidMount () {
 		let slug = this.state.slug
-		fetch('/lps.json')
+		var location = ''
+		if (process.env.REACT_APP_LOCAL == 'true'){
+			location = '/lps.json'
+		}
+		else {
+			location = 'prod/lps.json'
+		}
+
+		fetch(location)
 		.then(res => res.json())
 		.then((json) => {
 			let lp = json.lps.find(lp => lp.slug === slug)

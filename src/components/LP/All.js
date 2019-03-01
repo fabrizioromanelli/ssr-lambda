@@ -5,6 +5,8 @@ import fetch from 'isomorphic-fetch'
 
 polyfill()
 
+require('dotenv').config()
+
 class LPAll extends Component {
 	constructor(props) {
 		super(props)
@@ -12,8 +14,16 @@ class LPAll extends Component {
 	}
 
 	componentDidMount() {
-		console.log('fetching client-side...')
-		fetch('/lps.json')
+		console.log('fetching client-side... '+process.env.REACT_APP_LOCAL)
+		var location = ''
+		if (process.env.REACT_APP_LOCAL == 'true'){
+			location = '/lps.json'
+		}
+		else {
+			location = 'prod/lps.json'
+		}
+
+		fetch(location)
 		.then(res => res.json())
 		.then((json) => {
 			this.setState({

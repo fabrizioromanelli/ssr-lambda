@@ -8,21 +8,21 @@ import React from 'react'
 import ReactDOMServer, { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import { matchRoutes } from 'react-router-config'
-import App from '../src/App'
-import { routes } from '../src/routes'
+import App from './App'
+import { routes } from './routes'
 
-require('dotenv').config();
+require('dotenv').config()
 
-const server = express()
-const viewPath = process.env.DEVELOPMENT ? 'views' : 'build'
+const app = express()
 
 // Set view engine & serve static assets
-server.set('view engine', 'ejs')
-server.set('views', path.join(__dirname, '..', viewPath))
-server.use(express.static(path.join(__dirname, '..', 'build')))
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, '..'))
+app.use('/static', express.static(path.join(__dirname, '..', 'static')))
+app.use('/', express.static(path.join(__dirname, '..')))
 
 // Always return the main index.html, so react-router render the route in the client
-server.get('*', (req, res) => {
+app.get('*', (req, res) => {
 	const branch = matchRoutes(routes, req.url)
 	const promises = []
 
@@ -50,4 +50,4 @@ server.get('*', (req, res) => {
 	})
 })
 
-module.exports = server;
+module.exports = app;

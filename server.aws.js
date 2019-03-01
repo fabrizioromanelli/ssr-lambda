@@ -3,6 +3,5 @@
 //
 'use strict'
 
-require('babel-register');
-const server = require('./src/server');
-module.exports = server;
+const app = require('./views/server');
+module.exports = app;

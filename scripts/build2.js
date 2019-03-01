@@ -21,4 +21,4 @@ console.log('The index.ejs has been saved! Deleting the existing index.html...')
 
 // DELETE index.html
 fs.unlinkSync(htmlPath);
-console.log("The Process completed!\r\n");
+console.log("Process completed!\r\n");
