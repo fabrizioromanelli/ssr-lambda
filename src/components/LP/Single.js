@@ -28,7 +28,7 @@ class LPSingle extends Component {
 			location = '/lps.json'
 		}
 		else {
-			location = 'prod/lps.json'
+			location = '../../prod/lps.json'
 		}
 
 		fetch(location)

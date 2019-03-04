@@ -14,13 +14,13 @@ class LPAll extends Component {
 	}
 
 	componentDidMount() {
-		console.log('fetching client-side... '+process.env.REACT_APP_LOCAL)
+		console.log('fetching client-side. Local = '+process.env.REACT_APP_LOCAL)
 		var location = ''
 		if (process.env.REACT_APP_LOCAL == 'true'){
 			location = '/lps.json'
 		}
 		else {
-			location = 'prod/lps.json'
+			location = '../prod/lps.json'
 		}
 
 		fetch(location)

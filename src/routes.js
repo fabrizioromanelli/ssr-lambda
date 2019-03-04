@@ -13,20 +13,20 @@ polyfill()
 require('dotenv').config()
 
 // Custom function to load the data on the server-side
-const loadData  = (match) => {
+const loadData = (match) => {
 	// Alert a warning if not an absolute url
 	// TODO change it!
-	console.log('fetching server-side... '+process.env.REACT_APP_LOCAL)
+	console.log('fetching server-side. Local = '+process.env.REACT_APP_LOCAL)
   var location = ''
 	if (process.env.REACT_APP_LOCAL == 'true'){
 		location = 'http://localhost:3000/lps.json'
 	}
 	else {
-		location = 'https://4jevustfab.execute-api.eu-central-1.amazonaws.com/prod/lps.json'
+		location = 'https://tv5set5ifg.execute-api.eu-central-1.amazonaws.com/prod/lps.json'
 	}
 
 	return fetch(location)
-	.then(res => res.json())
+	.then(res => res.json(), reason => {console.log(reason)})
 }
 
 export const routes = [

@@ -37,8 +37,8 @@
     "start": "react-scripts start",
     "start-babel": "babel-node --presets es2015 server.local.js",
     "local": "REACT_APP_LOCAL=true node server.local.js",
-    "build-local": "REACT_APP_LOCAL=true react-scripts build && node scripts/build2.js && yarn babel",
-    "build-remote": "REACT_APP_LOCAL=false react-scripts build && node scripts/build2.js && yarn babel",
+    "build-local": "yarn && REACT_APP_LOCAL=true react-scripts build && node scripts/build2.js && yarn babel && cp lambda.js server.* ./build && cp -fr node_modules ./build/",
+    "build-remote": "yarn && REACT_APP_LOCAL=false react-scripts build && node scripts/build2.js && yarn babel && cp lambda.js server.* ./build && cp -fr node_modules ./build/",
     "test-local": "REACT_APP_LOCAL=true react-scripts test --env=jsdom",
     "test-remote": "REACT_APP_LOCAL=false react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
@@ -58,7 +58,7 @@
     "deploy": "aws cloudformation deploy --template-file packaged-sam.yaml --stack-name $npm_package_config_cloudFormationStackName --capabilities CAPABILITY_IAM --region $npm_package_config_region",
     "package-deploy": "npm run package && npm run deploy",
     "delete-stack": "aws cloudformation delete-stack --stack-name $npm_package_config_cloudFormationStackName --region $npm_package_config_region",
-    "setup": "npm install && (aws s3api get-bucket-location --bucket $npm_package_config_s3BucketName --region $npm_package_config_region || npm run create-bucket) && npm run package-deploy"
+    "setup": "(aws s3api get-bucket-location --bucket $npm_package_config_s3BucketName --region $npm_package_config_region || npm run create-bucket) && npm run package-deploy"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -68,5 +68,6 @@
     "babel-preset-react": "^6.24.1",
     "nodemon": "^1.11.0",
     "webpack": "^3.4.1"
-  }
+  },
+  "homepage": "prod/"
 }

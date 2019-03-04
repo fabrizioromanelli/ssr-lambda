@@ -5,7 +5,7 @@ import App from './App'
 import './index.css'
 
 render((
-	<BrowserRouter>
+	<BrowserRouter basename="/prod"> // To be changed when the base route is no more /prod
 		<App />
 	</BrowserRouter>
 ), document.getElementById('root'))
