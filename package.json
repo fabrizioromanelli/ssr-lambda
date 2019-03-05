@@ -9,7 +9,9 @@
     "region": "eu-central-1",
     "cloudFormationStackName": "SSR",
     "functionName": "app",
-    "accountId": "659317009365"
+    "accountId": "659317009365",
+    "localUrl": "http://localhost:3000",
+    "remoteUrl": "https://yka0vy308l.execute-api.eu-central-1.amazonaws.com/prod"
   },
   "dependencies": {
     "aws-serverless-express": "^3.3.3",
@@ -35,9 +37,9 @@
   "scripts": {
     "start": "react-scripts start",
     "start-babel": "babel-node --presets es2015 server.local.js",
-    "local": "REACT_APP_LOCAL=true node ./build/server.local.js",
-    "build-local": "yarn && REACT_APP_LOCAL=true react-scripts build && node scripts/build2.js && REACT_APP_LOCAL=true PUBLIC_URL=http://localhost:3000 yarn babel && cp lambda.js server.* ./build && cp -fr node_modules ./build/ && mkdir ./build/prod && cp -r ./build/static ./build/prod/static && cp ./build/favicon.ico ./build/manifest.json ./build/prod",
-    "build-remote": "yarn && REACT_APP_LOCAL=false react-scripts build && node scripts/build2.js && REACT_APP_LOCAL=false PUBLIC_URL=https://tv5set5ifg.execute-api.eu-central-1.amazonaws.com/prod yarn babel && cp lambda.js server.* ./build && cp -fr node_modules ./build/",
+    "local": "node ./build/server.local.js",
+    "build-local": "yarn && REACT_APP_LOCAL=true PUBLIC_URL=$npm_package_config_localUrl react-scripts build && node scripts/build2.js && REACT_APP_LOCAL=true PUBLIC_URL=$npm_package_config_localUrl yarn babel && cp lambda.js server.* ./build && cp -fr node_modules ./build/ && mkdir ./build/prod && cp -r ./build/static ./build/prod/static && cp ./build/favicon.ico ./build/manifest.json ./build/prod",
+    "build-remote": "yarn && REACT_APP_LOCAL=false PUBLIC_URL=$npm_package_config_remoteUrl react-scripts build && node scripts/build2.js && REACT_APP_LOCAL=false PUBLIC_URL=$npm_package_config_remoteUrl yarn babel && cp lambda.js server.* ./build && cp -fr node_modules ./build/",
     "test-local": "REACT_APP_LOCAL=true react-scripts test --env=jsdom",
     "test-remote": "REACT_APP_LOCAL=false react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
