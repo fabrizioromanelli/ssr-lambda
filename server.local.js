@@ -3,7 +3,7 @@
 //
 'use strict'
 
-const app = require('./build/views/server');
+const app = require('./views/server');
 
 // Run server
 const port = process.env.PORT || 3000

@@ -18,12 +18,7 @@ const loadData = (match) => {
 	// TODO change it!
 	console.log('fetching server-side. Local = '+process.env.REACT_APP_LOCAL)
   var location = ''
-	if (process.env.REACT_APP_LOCAL == 'true'){
-		location = 'http://localhost:3000/lps.json'
-	}
-	else {
-		location = 'https://tv5set5ifg.execute-api.eu-central-1.amazonaws.com/prod/lps.json'
-	}
+	location = process.env.PUBLIC_URL+'/lps.json'
 
 	return fetch(location)
 	.then(res => res.json(), reason => {console.log(reason)})

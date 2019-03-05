@@ -19,7 +19,13 @@ const app = express()
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, '..'))
 app.use('/static', express.static(path.join(__dirname, '..', 'static')))
-app.use('/', express.static(path.join(__dirname, '..')))
+if (process.env.REACT_APP_LOCAL == 'true'){
+	app.use('/', express.static(path.join(__dirname, '..')))
+}
+else{
+	app.use('/prod', express.static(path.join(__dirname, '..')))
+	app.use('/', express.static(path.join(__dirname, '..')))
+}
 
 // Always return the main index.html, so react-router render the route in the client
 app.get('*', (req, res) => {
@@ -41,6 +47,9 @@ app.get('*', (req, res) => {
 				<App/>
 			</StaticRouter>
 		)
+
+// Server-side debug message
+console.log('[DBG] Server-side rendered page: '+content)
 
 		if(context.url) {
 			res.writeHead(301, {Location: context.url})
