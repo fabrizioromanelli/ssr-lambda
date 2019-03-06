@@ -1,4 +1,10 @@
 {
-  "presets": ["@babel/preset-react", "@babel/preset-env"],
-  "plugins": ["transform-inline-environment-variables", "@babel/plugin-proposal-class-properties"]
+  "presets": [
+    "@babel/preset-react",
+    "@babel/preset-env"
+  ],
+  "plugins": [
+    "transform-inline-environment-variables",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-transform-runtime"]
 }
