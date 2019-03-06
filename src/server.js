@@ -49,7 +49,7 @@ app.get('*', (req, res) => {
 		)
 
 // Server-side debug message
-console.log('[DBG] Server-side rendered page: '+content)
+//console.log('[DBG] Server-side rendered page: '+content)
 
 		if(context.url) {
 			res.writeHead(301, {Location: context.url})

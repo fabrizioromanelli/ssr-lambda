@@ -12,17 +12,23 @@ polyfill()
 
 require('dotenv').config()
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 // Custom function to load the data on the server-side
-const loadData = (match) => {
+const loadData = async () => {
 	// Alert a warning if not an absolute url
 	// TODO change it!
-	console.log('fetching server-side. Local = '+process.env.REACT_APP_LOCAL)
+	console.log('Fetching server-side. Local = '+process.env.REACT_APP_LOCAL)
   var location = ''
 	location = process.env.PUBLIC_URL+'/lps.json'
 
-	return fetch(location)
-	.then(res => res.json(), reason => {console.log(reason)})
-}
+	var result = fetch(location).then(res => res.json(), reason => {console.log(reason)})
+	await sleep(5000);
+	console.log('Fetched!')
+	return result;
+};
 
 export const routes = [
 	{ path: '/',
